@@ -1,0 +1,23 @@
+{
+  "name": "battleShip-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteog24/battleShip.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matteog24/battleShip/issues"
+  },
+  "homepage": "https://github.com/matteog24/battleShip#readme",
+  "dependencies": {
+    "input": "git+https://github.com/andreabeggiato-his/nodejs-input.git"
+  }
+}
