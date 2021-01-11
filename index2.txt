@@ -1,0 +1,110 @@
+// input
+
+const input = require('input');
+const utils = require('./utils');
+
+const SHIP_LENGTHS = [
+  1, 1, 1, 1,
+  2, 2, 2,
+  3, 3,
+  4,
+];
+
+let shipChoice = 0;
+
+
+// functions
+
+async function selectDifficulty() {
+  const difficulties = ['Easy', 'Medium', 'Hard'];
+  let difficulty = 1;
+}
+
+function fillComputerBoard(board) {
+  // fill the computer board.
+  chooseShipsRandomnly(SHIP_LENGTHS, shipChoice, board);
+}
+
+async function fillPlayerBoard(board) {
+  // fill the computer board.
+  // This function is async because we need keyboard input. You can also choose to
+  // create the playerBoard randomly.
+
+  const randomYesOrNo = await input.readInteger('Choose 1 for creating the board randomly or 2 if you want to choose the position of the ships');
+  if (randomYesOrNo == '1') {
+    chooseShipsRandomnly(SHIP_LENGTHS, shipChoice, board);
+  }
+  else if (randomYesOrNo == '2') {
+    playerMove(computerBoard);
+  }
+  else {
+    console.log('Error');
+    return;
+  }
+
+}
+
+async function playerMove(computerBoard) {
+  let playerMove = await input.readInteger('Choose the coordiantes');
+
+  // update the computerBoard with the player's move
+  // This function is async because we need keyboard input
+
+  // qui diciamo di slittare la scelta dell'utente su shipsChosen
+}
+
+function computerMove(playerBoard) {
+  // update the computerBoard with the player's move
+  // This function is async because we need keyboard input
+}
+
+function areAllShipsDestroyed(board) {
+  // check if all ships are destroyed in the board
+}
+
+
+function chooseShipsRandomnly(SHIP_LENGTHS, shipChoice, board) {
+  for (let a = 0; a < 10; a = a + 1) {
+    let a = Math.floor(Math.random() * SHIP_LENGTHS.length);
+    SHIP_LENGTHS.pop(SHIP_LENGTHS[a]);
+    let shipChoice = SHIP_LENGTHS[a];
+      board[0][0] = 1;
+
+    // select position of number
+    let randomPositionNumber = utils.getRandomNumber(1, 10);
+
+    // select position of the letters
+    let randomPositionLetter = utils.getRandomNumber(1, 10);
+
+
+    // get ship 
+    let randomChooseShip = utils.getRandomNumber(1, 10);
+  }
+}
+
+
+async function main() {
+  const computerBoard = utils.createGamingBoard();
+  const playerBoard = utils.createGamingBoard();
+
+  const difficulty = await selectDifficulty();
+
+  fillComputerBoard(computerBoard);
+  await fillPlayerBoard(playerBoard);
+  
+  // with this utils function you can print a board
+  utils.printBoard(playerBoard, false);
+
+  // while (!areAllShipsDestroyed(computerBoard) || !areAllShipsDestroyed(playerBoard)) {
+  //   await playerMove(computerBoard);
+  //   computerMove(playerBoard, difficulty);
+  // }
+
+  // output the winner (computer or player)
+}
+
+// let the show... begin!
+main();
+
+
+// utils.printBoard(computerBoard, false);

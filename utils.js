@@ -31,7 +31,7 @@ function printBoard(board, showOnlyShot) {
           return '~';
         }
         else if (c === 1) {
-          return '\u0219';
+          return '\u2593';
         }
         if (c === 2) {
           return 'X';
