@@ -17,7 +17,22 @@ async function selectDifficulty() {
 
 function fillComputerBoard(board) {
   // fill the computer board.
+    for (let a = 0; a < 10; a = a + 1) {
+    let a = Math.floor(Math.random() * SHIP_LENGTHS.length);
+    SHIP_LENGTHS.splice(SHIP_LENGTHS.indexOf(a));
+    let shipChoice = SHIP_LENGTHS[a];
+  
+    
 
+    // select position of number
+    let randomPositionNumber = utils.getRandomNumber(1, SHIP_LENGTHS.length);
+
+    // select position of the letters
+    let randomPositionLetter = utils.getRandomNumber(1, SHIP_LENGTHS.length);
+
+    // get ship 
+    let randomChooseShip = utils.getRandomNumber(1, SHIP_LENGTHS.length);
+  }
 }
 
 async function fillPlayerBoard(board) {
@@ -26,7 +41,7 @@ async function fillPlayerBoard(board) {
   // fill the computer board.
   // This function is async because we need keyboard input. You can also choose to
 
-  for (let a = 0; a < SHIP_LENGTHS.length; a = a + 1) {
+  for (let a = 0; a < 10; a = a + 1) {
 
   console.log('Here is your board');
   utils.printBoard(board, false);
@@ -38,7 +53,7 @@ async function fillPlayerBoard(board) {
   console.log()
 
   let shipChoice = await input.readInteger('Choose the ship');
-  SHIP_LENGTHS.splice(SHIP_LENGTHS.indexOf(shipChoice));
+  SHIP_LENGTHS.splice(SHIP_LENGTHS.indexOf(shipChoice), 1);
   let coordinateNumber = await input.readInteger('Type the number coordinate');
   let coordinateLetter = await input.readString('Type the letter coordinate');
   board[coordinateNumber - 1][coordinateLetter - 1] = 1;
