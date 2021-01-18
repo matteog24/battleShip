@@ -1,0 +1,67 @@
+let randomYesOrNo = await input.readInteger('Press 1 for a randomly generated board or 2 for choosing the specific coordinates');
+  if (randomYesOrNo == 1) {
+    fillPlayerBoardRandomly(board);
+  }
+  else if (randomYesOrNo == 2) {
+    // player selects the coordinates
+}
+
+board[5][5] = 1;
+
+    
+
+
+
+
+
+
+
+// //function fillPlayerBoardRandomly(board) {
+//     while (a < SHIP_LENGTHS.length) {
+//         a = Math.floor(Math.random() * SHIP_LENGTHS.length);
+//         SHIP_LENGTHS.pop(SHIP_LENGTHS[a]);
+//         let shipChoice = SHIP_LENGTHS[a];
+      
+//         // select position of number
+//         let randomPositionNumber = utils.getRandomNumber(0, 9);
+      
+//         // select position of the letters
+//         let randomPositionLetter = utils.getRandomNumber(0, 9);
+//         // board[5][5] = 1;
+      
+//         let direction = utils.getRandomNumber(0, 3); // 0 -> up, 1 -> down, 2 -> left, 3 -> right
+      
+//         // checkRange(randomPositionNumber, randomPositionLetter, direction, shipChoice, a, board);
+      
+//         a = a + 1
+      
+//         }
+        
+//         console.log('Here is your board');
+//         utils.printBoard(board, false);
+        
+//       }
+
+// function checkRange(x, y, direction, shipChoice, a, board) {
+//   if (direction == 0) {
+//    if (x => (shipChoice - 1)) {
+//      while ()
+//    }
+//    else {
+//      direction = utils.getRandomNumber(0, 3);
+//      checkRange(x, y, direction, shipChoice, a, board);
+//    }
+//  }
+//  else if (direction == 1) {
+
+//  }
+//  else if (direction == 2) {
+
+//  }
+ // else if (direction == 3) {
+
+  //}
+
+  // + shipChoice
+  // controlla se 1 (in riga verticale) è meno di shipChoice. Se è cosi, secgli di nuovo randomly a, senza quella opzione
+// }
