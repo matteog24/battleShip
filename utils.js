@@ -12,7 +12,7 @@ function createGamingBoard() {
 }
 
 function printBoard(board, showOnlyShot) {
-  console.log(['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].join('\t'));
+ console.log(['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].join('\t'));
   for (let i = 0; i < CELL_NUMBER; i += 1) {
     const cells = board[i].map((c) => {
       if (showOnlyShot) {
