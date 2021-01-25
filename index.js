@@ -26,73 +26,81 @@ async function selectDifficulty() {
 }
 
 function fillComputerBoard(board) {
+  function random() {
   for (let b = 10; b > 0; b = b - 1) {
-    // get ship 
-    let randomChooseShip = SHIP_LENGTHS[b - 1];
-    SHIP_LENGTHS.pop();
 
-    // select position of number
-    let randomPositionNumber = utils.getRandomNumber(0, 9);
+      // get ship 
+      let randomChooseShip = SHIP_LENGTHS[b - 1];
+      SHIP_LENGTHS.pop();
 
-    // select position of the letters
-    let randomPositionLetter = utils.getRandomNumber(0, 9);
+      // select position of number
+      let randomPositionNumber = utils.getRandomNumber(0, 9);
+
+      // select position of the letters
+      let randomPositionLetter = utils.getRandomNumber(0, 9);
 
 
-    console.log(randomChooseShip);
-    direction = utils.getRandomNumber(0, 1);
-    check(randomPositionNumber, randomPositionLetter, randomChooseShip, board);
+      console.log(randomChooseShip);
+      direction = utils.getRandomNumber(0, 1);
+      check(randomPositionNumber, randomPositionLetter, randomChooseShip, board);
 
-    if (randomChooseShip == 1) {
+      if (randomChooseShip == 1) {
 
+      }
+      else if (randomChooseShip == 2) {
+        if (direction == 0 && typeof (randomPositionNumber + 1) !== undefined && typeof (randomPositionLetter) !== undefined) {
+          secondCoordinateNumber = randomPositionNumber + 1;
+          secondCoordinateLetter = randomPositionLetter;
+        }
+        else if (direction == 1 && typeof (randomPositionLetter + 1) !== undefined) {
+          secondCoordinateNumber = randomPositionNumber;
+          secondCoordinateLetter = randomPositionLetter + 1;
+        }
+      }
+      else if (randomChooseShip == 3) {
+        if (direction == 0 && typeof (randomPositionNumber + 2) !== undefined && typeof (readPositionLetter) !== undefined) {
+          thirdCoordinateNumber = randomPositionNumber + 2;
+          thirdCoordinateLetter = randomPositionLetter;
+          board[thirdCoordinateNumber - 1][thirdCoordinateLetter] = 1;
+          board[thirdCoordinateNumber][thirdCoordinateLetter] = 1;
+        }
+        else if (direction == 1 && typeof (randomPositionLetter + 2) !== undefined) {
+          thirdCoordinateNumber = randomPositionNumber;
+          thirdCoordinateLetter = randomPositionLetter + 2;
+          board[thirdCoordinateNumber][thirdCoordinateLetter - 1] = 1;
+          board[thirdCoordinateNumber][thirdCoordinateLetter] = 1;
+        }
+      }
+      else if (randomChooseShip == 4) {
+        if (direction == 0 && typeof (randomPositionNumber + 3) !== undefined && typeof (randomPositionLetter) !== undefined) {
+          fourthCoordinateNumber = randomPositionNumber + 3;
+          fourthCoordinateLetter = randomPositionLetter;
+          board[fourthCoordinateNumber - 2][fourthCoordinateLetter] = 1;
+          board[fourthCoordinateNumber - 1][fourthCoordinateLetter] = 1;
+          board[fourthCoordinateNumber][fourthCoordinateLetter] = 1;
+        }
+        else if (direction == 1 && typeof (randomPositionLetter + 3) !== undefined) {
+          fourthCoordinateNumber = randomPositionNumber;
+          fourthCoordinateLetter = randomPositionLetter + 3;
+          board[fourthCoordinateNumber][fourthCoordinateLetter - 2] = 1;
+          board[fourthCoordinateNumber][fourthCoordinateLetter - 1] = 1;
+          board[fourthCoordinateNumber][fourthCoordinateLetter] = 1;
+        }
+        else {
+          random();
+        }
+      }
     }
-    else if (randomChooseShip == 2) {
-      if (direction == 0 && typeof (randomPositionNumber + 1) !== undefined) {
-        secondCoordinateNumber = randomPositionNumber + 1;
-        secondCoordinateLetter = randomPositionLetter;
-      }
-      else if (direction == 1 && typeof (randomPositionNumber + 1) !== undefined) {
-        secondCoordinateNumber = randomPositionNumber;
-        secondCoordinateLetter = randomPositionLetter + 1;
-      }
-    }
-    else if (randomChooseShip == 3) {
-      if (direction == 0 && typeof (randomPositionNumber + 2) !== undefined && typeof (randomPositionNumber) !== undefined) {
-        thirdCoordinateNumber = randomPositionNumber + 2;
-        thirdCoordinateLetter = randomPositionLetter;
-        board[thirdCoordinateNumber - 1][thirdCoordinateLetter] = 1;
-        board[thirdCoordinateNumber][thirdCoordinateLetter] = 1;
-      }
-      else if (direction == 1 && typeof (randomPositionNumber + 2) !== undefined) {
-        thirdCoordinateNumber = randomPositionNumber;
-        thirdCoordinateLetter = randomPositionLetter + 2;
-        board[thirdCoordinateNumber][thirdCoordinateLetter - 1] = 1;
-        board[thirdCoordinateNumber][thirdCoordinateLetter] = 1;
-      }
-    }
-    else if (randomChooseShip == 4) {
-      if (direction == 0 && typeof (randomPositionNumber + 3) !== undefined) {
-        fourthCoordinateNumber = randomPositionNumber + 3;
-        fourthCoordinateLetter = randomPositionLetter;
-        board[fourthCoordinateNumber - 2][fourthCoordinateLetter] = 1;
-        board[fourthCoordinateNumber - 1][fourthCoordinateLetter] = 1;
-        board[fourthCoordinateNumber][fourthCoordinateLetter] = 1;
-      }
-      else if (direction == 1 && typeof (randomPositionNumber + 3) !== undefined) {
-        fourthCoordinateNumber = randomPositionNumber;
-        fourthCoordinateLetter = randomPositionLetter + 3;
-        board[fourthCoordinateNumber][fourthCoordinateLetter - 2] = 1;
-        board[fourthCoordinateNumber][fourthCoordinateLetter - 1] = 1;
-        board[fourthCoordinateNumber][fourthCoordinateLetter] = 1;
-      }
-    }
+
+    SHIP_LENGTHS = [
+      1, 1, 1, 1,
+      2, 2, 2,
+      3, 3,
+      4,
+    ];
   }
-  
-  SHIP_LENGTHS = [
-    1, 1, 1, 1,
-    2, 2, 2,
-    3, 3,
-    4,
-  ];
+
+  random()
 }
 
 function check(coordinateNumber, coordinateLetter, shipChoice, board) {
@@ -109,8 +117,8 @@ function check(coordinateNumber, coordinateLetter, shipChoice, board) {
 
 async function fillPlayerBoard(board) {
 
-console.log('\x1b[43m%s\x1b[0m', 'Here is your board');
-utils.printBoard(board, false);
+  console.log('\x1b[44m%s\x1b[0m', 'Here is your board');
+  utils.printBoard(board, false);
 
   for (let a = 0; a < 10; a = a + 1) {
 
@@ -175,7 +183,7 @@ utils.printBoard(board, false);
     }
 
     SHIP_LENGTHS.splice(SHIP_LENGTHS.indexOf(shipChoice), 1);
-    console.log('\x1b[43m%s\x1b[0m', 'Here is your board');
+    console.log('\x1b[44m%s\x1b[0m', 'Here is your board');
     utils.printBoard(board, false);
   }
 }
@@ -184,7 +192,7 @@ utils.printBoard(board, false);
 async function playerMove(computerBoard) {
 
   let playerMoveNumber = (await input.readInteger('Choose the number to hit the ship') - 1);
-  let playerMoveLetter = letterToNumber((await input.readString('Choose the letter to hit the ship')) - 1);
+  let playerMoveLetter = (letterToNumber(await input.readString('Choose the letter to hit the ship')) - 1);
 
   if (computerBoard[playerMoveNumber][playerMoveLetter] == 0) {
     console.log('There is no ship there! Missed shot!');
@@ -204,43 +212,45 @@ async function playerMove(computerBoard) {
 
 }
 
- function computerMove(playerBoard) {
+function computerMove(playerBoard) {
 
   console.log('My turn! I say...');
   let computerMoveNumber = utils.getRandomNumber(0, 9);
   let computerMoveLetter = utils.getRandomNumber(0, 9);
 
   if (playerBoard[computerMoveNumber][computerMoveLetter] == 0) {
-  console.log('Aaaaa I missed the shot... :{');
+    console.log('\x1b[32m%s\x1b[0m', 'Aaaaa I missed the shot... :{');
     playerBoard[computerMoveNumber][computerMoveLetter] = 3;
   }
   else if (playerBoard[computerMoveNumber][computerMoveLetter] == 1) {
-    console.log('Ha! I have just hit a ship! :D');
-    playerBoard[computerMoveNumber][playerMoveLetter] = 2;
+    console.log('\x1b[31m%s\x1b[0m', 'Ha! I have just hit a ship! :D');
+    playerBoard[computerMoveNumber][computerMoveLetter] = 2;
     computerPoints = computerPoints + 10;
+    // utils.printBoard(playerBoard);
   }
   else if (playerBoard[computerMoveNumber][computerMoveLetter] == 2) {
-    console.log('Crap! I have already hit a ship there.');
+    console.log('\x1b[32m%s\x1b[0m', 'Crap! I have already hit a ship there.');
   }
-    else if (playerBoard[computerMoveNumber][computerMoveLetter] == 3) {
-    console.log('Jeez... I have already tried there... :(');
+  else if (playerBoard[computerMoveNumber][computerMoveLetter] == 3) {
+    console.log('\x1b[32m%s\x1b[0m', 'Jeez... I have already tried there... :(');
   }
 }
 
 function areAllShipsDestroyed(board) {
   if (board.indexOf(1) == -1) {
-    console.log('Game is finished!!');
-    return TRUE
-  }
-  else {
-    return FALSE
+    console.log('Computer, GO!');
+    return false;
   }
 }
 
 function letterToNumber(number) {
+  if (number >= 0) {
+    console.log('Hey! Type a letter, not a number!');
+    return;
+  }
+  number = number.toUpperCase();
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   number = letters.indexOf(number) + 1;
-
   return number;
 }
 
@@ -256,6 +266,7 @@ async function main() {
   const difficulty = await selectDifficulty();
 
   fillComputerBoard(computerBoard);
+  utils.printBoard(computerBoard, false); 
   await fillPlayerBoard(playerBoard);
   await playerMove(computerBoard);
   computerMove(playerBoard, difficulty);
@@ -264,8 +275,10 @@ async function main() {
     await playerMove(computerBoard);
     computerMove(playerBoard, difficulty);
   }
-
-  // output the winner (computer or player)
+  console.log('\x1b[32m%s\x1b[0m', 'Type node index.js to play again!');
+  
+  console.log('You made ' + playerPoints + ' points!')
 }
+
 
 main();
